@@ -94,6 +94,8 @@ func (c *Client) ObtainCertificateUsingCSRSource(ctx context.Context, account ac
 
 	var err error
 	order := acme.Order{Identifiers: identifiers}
+	notAfter := time.Now().AddDate(0, 0, 10)
+    	order.NotAfter = &notAfter
 
 	// remember which challenge types failed for which identifiers
 	// so we can retry with other challenge types
